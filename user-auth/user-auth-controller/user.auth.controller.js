@@ -9,8 +9,8 @@ const userController = {
           return res.status(400).json({ message: "Phone number is required" });
         }
       
-        const otp = Math.floor(100000 + Math.random() * 900000); 
-        const otpExpiry = new Date(Date.now() + 5 * 60 * 1000); // OTP expires in 5 minutes
+        const otp = Math.floor(1000 + Math.random() * 9000); 
+        const otpExpiry = new Date(Date.now() + 5 * 60 * 1000); 
       
         try {
           const user = await User.findOneAndUpdate(
