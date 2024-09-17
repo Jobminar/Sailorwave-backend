@@ -1,16 +1,23 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import mongoose from 'mongoose'
+import express from "express";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import router from "./router/index.js";
 
-dotenv.config()
+dotenv.config();
 
-const app=express()
+const app = express();
 
-const PORT=process.env.PORT 
+const PORT = process.env.PORT;
 
-mongoose.connect(process.env.MONGO_URI)
-.then(()=>console.log('mongodb connected successfully'))
-.catch((err)=>console.log('mongodb disconnected',err))
+app.use(express.json());
 
-app.listen(()=>console.log(`server running ${PORT}`))
-    
+app.use("/", router);
+
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("mongodb connected successfully"))
+  .catch((err) => console.log("mongodb connection error", err));
+
+app.listen(PORT, () => console.log(`Server running on port:${PORT}`));
