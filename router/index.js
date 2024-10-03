@@ -1,7 +1,6 @@
 import express from 'express'
 import userAuthRouter from '../router/user.routes.js'
 
-//....
 import adminRouter from '../router/admin.routes.js'
 
 const app=express()
