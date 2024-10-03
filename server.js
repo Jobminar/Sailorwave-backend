@@ -7,16 +7,15 @@ dotenv.config();
 
 const app = express();
 
-
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 3000; // Default port if process.env.PORT is undefined
 
 app.use(express.json());
 app.use("/", router);
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  
-})
+// Log the Mongo URI for debugging
+console.log("Mongo URI:", process.env.MONGO_URI);
+
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected successfully"))
   .catch((err) => console.log("MongoDB connection error:", err));
 
